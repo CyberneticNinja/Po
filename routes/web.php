@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,3 +15,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'welcome')->name('home');
+
+Route::get('/login', function () {
+    return view('login.login');
+})->name('login');
+
+Route::get('/dashboard', function () {
+    if (Auth::check()) {
+        $userName = Auth::user()->name;
+            return $userName;
+        } else {
+        return ('user is not logged in');
+        }
+})->name('dashboard');
