@@ -21,10 +21,9 @@ Route::get('/login', function () {
 })->name('login');
 
 Route::get('/dashboard', function () {
-    if (Auth::check()) {
-        $userName = Auth::user()->name;
-            return $userName;
-        } else {
-        return ('user is not logged in');
-        }
+    return view('dashboard.index');
+})->name('dashboard');
+
+Route::get('/dashboard/calendar', function () {
+    return view('dashboard.event');
 })->name('dashboard');

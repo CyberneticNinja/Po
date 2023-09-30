@@ -24,9 +24,8 @@ class Login extends Component
         ];
 
         if (Auth::attempt($credentials)) {
-
             // Authentication successful
-            return redirect('/dashboard'); // Redirect to the dashboard
+            return redirect('/dashboard'); // Redirect to the dashboard or wherever you want
         } else {
             // Authentication failed
             session()->flash('error', 'Invalid credentials. Please try again.');
