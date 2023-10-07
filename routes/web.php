@@ -14,13 +14,14 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::view('/', 'welcome')->name('home');
-
 Route::get('/login', function () {
     return view('login.login');
 })->name('login');
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/', function () {
+        return view('dashboard.index');
+    })->name('dashboard');
     Route::get('/dashboard', function () {
         return view('dashboard.index');
     })->name('dashboard');
