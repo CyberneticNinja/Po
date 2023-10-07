@@ -1,13 +1,25 @@
 <div class="p-4">
     <ul class="flex space-x-4">
         <li>
-            <a href="{{ route('dashboard-events-today') }}" wire:click="$set('activeTab', 'today')" class="{{ $activeTab === 'today' ? 'font-bold' : '' }}">Today's Events</a>
+            @if ( Route::currentRouteName() == 'dashboard-events-today')
+            <a href="route('dashboard-events-today')" class="font-bold">Today's Events</a>
+            @else
+            <a href="{{ route('dashboard-events-today') }}">Today's Events</a>
+            @endif
         </li>
         <li>
-            <a href="{{ route('dashboard-events-week') }}" wire:click="$set('activeTab', 'week')" class="{{ $activeTab === 'week' ? 'font-bold' : '' }}">This Week's Events</a>
+            @if ( Route::currentRouteName() == 'dashboard-events-week')
+            <a href="{{ route('dashboard-events-week') }}" class="font-bold">Week's Events</a>
+            @else
+            <a href="{{ route('dashboard-events-week') }}">Weeks's Events</a>
+            @endif
         </li>
         <li>
-            <a href="{{ route('dashboard-events-month') }}" wire:click="$set('activeTab', 'month')" class="{{ $activeTab === 'month' ? 'font-bold' : '' }}">This Month's Events</a>
+            @if ( Route::currentRouteName() == 'dashboard-events-month')
+            <a href="{{ route('dashboard-events-month') }}" class="font-bold">Month's Events</a>
+            @else
+            <a href="{{ route('dashboard-events-month') }}">Month's Events</a>
+            @endif
         </li>
     </ul>
 </div>
