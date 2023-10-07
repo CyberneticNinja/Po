@@ -20,10 +20,24 @@ Route::get('/login', function () {
     return view('login.login');
 })->name('login');
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-})->name('dashboard');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard.index');
+    })->name('dashboard');
 
-Route::get('/dashboard/calendar', function () {
-    return view('dashboard.event');
-})->name('dashboard');
+    Route::get('/dashboard/calendar/create-event', function () {
+        return view('dashboard.event');
+    })->name('dashboard-create-event');
+
+    Route::get('/dashboard/calendar/today/events', function () {
+        return view('dashboard.todays-calendar-events');
+    })->name('dashboard-events-today');
+
+    Route::get('/dashboard/calendar/week/events', function () {
+        return view('dashboard.this-weeks-calendar-events');
+    })->name('dashboard-events-week');
+
+    Route::get('/dashboard/calendar/month/events', function () {
+        return view('dashboard.this-months-calendar-events');
+    })->name('dashboard-events-month');
+});

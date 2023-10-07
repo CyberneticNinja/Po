@@ -59,19 +59,32 @@ class DatabaseSeeder extends Seeder
         $permissions['edit user']->assignRole($registered_user);
 
         for ($c = 0; $c < 12; $c++) {
-            $user = User::create([
-                'name' => fake()->name(),
-                'email' => fake()->unique()->safeEmail(),
-                'email_verified_at' => now(),
-                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-                'remember_token' => Str::random(10),
-            ]);
-
             if ($c == 0) {
+                $user = User::create([
+                    'name' => fake()->name(),
+                    'email' => 'superadmin@church.com',
+                    'email_verified_at' => now(),
+                    'password' => bcrypt('password'),
+                    'remember_token' => Str::random(10),
+                ]);
                 $user->assignRole($super_admin);
             } else if ($c == 1) {
+                $user = User::create([
+                    'name' => fake()->name(),
+                    'email' => 'admin@church.com',
+                    'email_verified_at' => now(),
+                    'password' => bcrypt('password'),
+                    'remember_token' => Str::random(10),
+                ]);
                 $user->assignRole($admin);
             } else {
+                $user = User::create([
+                    'name' => fake()->name(),
+                    'email' => fake()->unique()->safeEmail(),
+                    'email_verified_at' => now(),
+                    'password' => bcrypt('password'),
+                    'remember_token' => Str::random(10),
+                ]);
                 $user->assignRole($registered_user);
             }
         }

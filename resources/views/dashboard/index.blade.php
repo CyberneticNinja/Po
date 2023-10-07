@@ -17,12 +17,16 @@
             </li>
         </ul>
         <div>
-            <a href="#" class="hover:text-gray-300">Calendar</a>
+            <a href="{{ route('dashboard-events-today') }}" class="hover:text-gray-300">Calendar</a>|
+            <a href="{{ route('dashboard-create-event') }}" class="hover:text-gray-300">Create Calendar Event</a>|
+            <a href="#" class="hover:text-gray-300">Edit Calendar Event</a>|
             <a href="#" class="ml-4 hover:text-gray-300">Logout</a>
         </div>
     </div>
 </div>
 <div class="pt-6">
+        <livewire:dashboard.calendareventbreadcrumbs />
+
      @yield('dashboard-body')
 </div>
 @endsection
